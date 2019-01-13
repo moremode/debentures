@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  passport1: one
+  passport2: one
+  date: 
+  count: 1
+  lastdate: 
+  percent: 1
+  sanctionspercent: 1
+  sanctionspayment: 1
+
+two:
+  passport1: two
+  passport2: two
+  date: 
+  count: 1
+  lastdate: 
+  percent: 1
+  sanctionspercent: 1
+  sanctionspayment: 1
