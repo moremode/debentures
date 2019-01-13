@@ -32,4 +32,4 @@
 
 # Project
 /.idea
-*database.yml
+/config/database.yml
