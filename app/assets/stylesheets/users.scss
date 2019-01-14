@@ -1,3 +1,154 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+:root
+{
+  --width: 1360px;
+}
+
+/// APPLICATION
+
+body
+{
+  height: calc(100vh - 16px);
+}
+
+.all-container
+{
+  height: calc(100vh - 88px);
+  background-color: #f8f8f8;
+  width: calc(var(--width) - 20px);
+  padding: 10px;
+  margin-left: calc((100% - var(--width)) / 2);
+}
+
+#main-nav-container
+{
+  width: 100%;
+  text-align: center;
+  margin: -8px 0px 10px 0px;
+  padding: 0px;
+  background-image: linear-gradient(#5b5b5b 0%, #696969 40%, #696969 60%, #5b5b5b 100%);
+  box-shadow: #7f7f7f 0px 0px 3px 3px;
+}
+
+.main-nav-element-container
+{
+  transition: 0.2s;
+  display: inline-block;
+  padding: 16px 20px;
+  font-size: 16px;
+}
+
+.main-nav-element-container:hover
+{
+  transition: 0.2s;
+  background-color: #169f00;
+  transform: translateY(2px);
+  box-shadow: #169f00 0px -2px 0px 0px;
+}
+
+.main-nav-user-element
+{
+  display: inline-block;
+  position: absolute;
+  right: calc((100% - var(--width)) / 2);
+  float: right;
+}
+
+.main-nav-element
+{
+  display: inline-block;
+  color: white;
+  font-family: Arial;
+}
+
+.container-href
+{
+  text-decoration: none;
+  color: black;
+}
+
+/// END APPLICATION
+
+/// AUTH
+
+.auth-table-container
+{
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.auth-field-container
+{
+  display: inline-block;
+  margin: auto;
+  background-color: white;
+  border: black solid 1px;
+  border-radius: 10px;
+  width: 250px;
+  padding: 30px;
+}
+
+.error-message
+{
+  color: red;
+  font-size: 16px;
+  margin: 0px 0px 15px 0px;
+  font-family: Arial;
+}
+
+#auth-form h3
+{
+  margin: 5px 2px;
+  font-family: Arial;
+  display: inline-block;
+}
+
+.auth-form-href
+{
+  margin: 5px 2px;
+  font-family: Arial;
+  display: inline-block;
+  font-weight: bold;
+  float: right;
+  text-decoration: none;
+  color: rgba(47, 0, 191, 0.84);
+}
+
+.auth-text-input
+{
+  width: calc(100% - 20px);
+  border: #bfbfbf 1px solid;
+  padding: 6px 8px;
+  border-radius: 3px;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.center-align-div-container
+{
+  text-align: center;
+}
+
+.auth-submit-button
+{
+  transition: 0.3s;
+  font-size: 16px;
+  padding: 15px 20px;
+  border-radius: 500px;
+  background-color: #5b5b5b;
+  color: white;
+  border: #696969 2px solid;
+}
+
+.auth-submit-button:hover
+{
+  transition: 0.3s;
+  transform: translateY(-7px);
+  box-shadow: 0px 7px 7px #169f00;
+}
+
+/// END AUTH

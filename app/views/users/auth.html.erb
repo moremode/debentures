@@ -1,1 +1,17 @@
-<h1>ARSLAN DURAK</h1>
+<div class="auth-table-container">
+  <div class="auth-field-container">
+    <% if flash[:error] != nil && flash[:error] != '' %>
+      <h3 class="error-message"><%= flash[:error] %></h3>
+    <% end %>
+    <form action="/auth" method="post" id="auth-form">
+      <h3>Логин</h3>
+      <a href="" class="auth-form-href">Нет аккаунта?</a>
+      <input type="text" name="username" class="auth-text-input">
+      <h3>Пароль</h3>
+      <input type="password" name="password" class="auth-text-input">
+      <div class="center-align-div-container">
+        <input type="submit" class="auth-submit-button" value="ВОЙТИ">
+      </div>
+    </form>
+  </div>
+</div>
