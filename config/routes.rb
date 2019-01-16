@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
-  get 'ajax/username_check'
+  get '/generate', to: 'debentures#generate'
   get '/auth', to: 'users#auth'
   get '/reg', to: 'users#reg'
   get '/logout', to: 'users#logout'
+
 
   post '/auth', to: 'users#auth_post'
   post '/check-username', to: 'ajax#username_check'
