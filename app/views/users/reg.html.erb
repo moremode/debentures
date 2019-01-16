@@ -1,0 +1,66 @@
+<div class="auth-table-container">
+  <div class="auth-main-container">
+    <h2 class="reg-name-h2">Регистрация</h2>
+    <div class="auth-field-container" id="reg-1">
+      <% if flash[:error] != nil && flash[:error] != '' %>
+        <h3 class="error-message"><%= flash[:error] %></h3>
+      <% end %>
+      <form action="/reg" method="post" id="reg-form-1" class="auth-form">
+        <h3>Логин</h3>
+        <input type="text" name="username" id="reg-form-username" class="auth-text-input">
+        <span id="reg-check-answer"></span>
+        <h3>Пароль</h3>
+        <input type="password" name="password" class="auth-text-input">
+        <div class="center-align-div-container">
+          <input type="submit" class="auth-submit-button" value="СОЗДАТЬ">
+        </div>
+      </form>
+    </div>
+    <!--<div class="auth-field-container" style="display: none" id="reg-2">
+      <% if flash[:error] != nil && flash[:error] != '' %>
+        <h3 class="error-message"><%= flash[:error] %></h3>
+      <% end %>
+      <form action="/reg" method="post" id="reg-form-2">
+        <h3>Логин</h3>
+        <input type="text" name="username" class="auth-text-input">
+        <h3>Пароль</h3>
+        <input type="password" name="password" class="auth-text-input">
+        <div class="center-align-div-container">
+          <input type="submit" class="auth-submit-button" value="ВОЙТИ">
+        </div>
+      </form>
+    </div>-->
+  </div>
+</div>
+<script>
+    $( "#reg-form-username" ).change(changed);
+
+  function changed()
+  {
+    $.ajax({
+
+        type:'post',
+        url:'/check-username',
+        data:{'username': $('#reg-form-username').val()},
+        response:'text',
+        success:function (data) {
+            if (data == 'true')
+            {
+                $('#reg-check-answer').text('✓');
+                $('#reg-check-answer').css('color', 'green');
+            }
+            else if (data == 'false')
+            {
+                $('#reg-check-answer').text('✗');
+                $('#reg-check-answer').css('color', 'red');
+            }
+            else
+            {
+                $('#reg-check-answer').text('');
+            }
+      }
+
+  });
+
+  }
+</script>

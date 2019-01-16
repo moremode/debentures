@@ -31,5 +31,5 @@
 /config/master.key
 
 # Project
-/.idea
+/.idea*
 /config/database.yml

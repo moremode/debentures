@@ -81,10 +81,17 @@ body
   height: 100%;
 }
 
-.auth-field-container
+.auth-main-container
 {
+
   display: inline-block;
   margin: auto;
+  text-align: center;
+}
+
+.auth-field-container
+{
+  text-align: left;
   background-color: white;
   border: black solid 1px;
   border-radius: 10px;
@@ -100,7 +107,7 @@ body
   font-family: Arial;
 }
 
-#auth-form h3
+.auth-form h3
 {
   margin: 5px 2px;
   font-family: Arial;
@@ -152,3 +159,25 @@ body
 }
 
 /// END AUTH
+
+/// REG START
+
+.reg-name-h2
+{
+  font-family: Arial;
+}
+
+#reg-form-1
+{
+  position: relative;
+}
+
+#reg-check-answer
+{
+  position: absolute;
+  top: 40px;
+  right: 10px;
+  color: red;
+}
+
+/// REG END
