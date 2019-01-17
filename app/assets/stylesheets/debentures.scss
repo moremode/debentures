@@ -36,4 +36,18 @@
   display: inline-block;
 }
 
+.blank-container
+{
+  text-align: left;
+  width: 470px;
+  padding: 15px;
+  margin-left: calc((100% - 500px) / 2);
+  border: 2px solid black;
+  border-radius: 5px;
+  background: white;
+  margin-top: 20px;
+  font-size: 18px;
+  font-family: Geneva, Arial, Helvetica, sans-serif;;
+}
+
 /// GENERATE END

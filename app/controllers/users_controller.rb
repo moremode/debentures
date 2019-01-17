@@ -12,6 +12,8 @@ class UsersController < ApplicationController
       session[:name] = username
     else
       flash[:error] = 'Пользователь с таким логином и паролем не найден'
+      redirect_to '/generate'
+      return
     end
     redirect_to root_path
   end
@@ -59,6 +61,8 @@ class UsersController < ApplicationController
     if (contains && username_length && password_length && username_symbols && password_symbols)
       User.create(username: username, password: password)
       session[:name] = username
+      redirect_to '/generate'
+      return
     end
     redirect_to '/reg'
   end

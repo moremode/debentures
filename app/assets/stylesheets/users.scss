@@ -16,7 +16,7 @@ body
 
 .all-container
 {
-  height: calc(100vh - 88px);
+  min-height: calc(100vh - 88px);
   background-color: #f8f8f8;
   width: calc(var(--width) - 20px);
   padding: 10px;
