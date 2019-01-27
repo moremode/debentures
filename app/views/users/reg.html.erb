@@ -1,10 +1,10 @@
 <div class="auth-table-container">
   <div class="auth-main-container">
-    <h2 class="reg-name-h2">Регистрация</h2>
     <div class="auth-field-container" id="reg-1">
       <% if flash[:error] != nil && flash[:error] != '' %>
         <h3 class="error-message"><%= flash[:error] %></h3>
       <% end %>
+      <h2 class="reg-name-h2">Регистрация</h2>
       <form action="/reg" method="post" id="reg-form-1" class="auth-form">
         <h3>Логин</h3>
         <input type="text" name="username" id="reg-form-username" class="auth-text-input">
@@ -32,6 +32,12 @@
     </div>-->
   </div>
 </div>
+<style>
+  .all-container
+  {
+    background: transparent;
+  }
+</style>
 <script>
     $( "#reg-form-username" ).change(changed);
 

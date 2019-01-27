@@ -82,4 +82,38 @@ class UsersController < ApplicationController
     end
     return flag
   end
+
+  def save_data
+    first1 = params[:first1]
+    last1 = params[:last1]
+    middle1 = params[:middle1]
+    serial1 = params[:serial1]
+    number1 = params[:number1]
+    given1 = params[:given1]
+    place1 = params[:place1]
+    address1 = params[:address1]
+
+    first2 = params[:first2]
+    last2 = params[:last2]
+    middle2 = params[:middle2]
+    serial2 = params[:serial2]
+    number2 = params[:number2]
+    given2 = params[:given2]
+    place2 = params[:place2]
+    address2 = params[:address2]
+
+    given = params[:given]
+    ret = params[:return]
+    loan_amount = params[:loan_amount]
+    year_percent = params[:year_percent]
+    delay_payment = params[:delay_payment]
+    delay_percent = params[:delay_percent]
+
+    if (Passport.all.each {|passport| passport.first_name == first1 && passport.last_name == last1 && passport.middle_name == middle1 && passport.serial == serial1 && passport.number == number1 } == nil)
+      puts('find');
+    else
+      puts('not_found');
+      Passport.create(first_name: first1, last_name: last1, middle_name: middle1, serial: serial1, number: number1, given: given1, address: place1, )
+    end
+  end
 end

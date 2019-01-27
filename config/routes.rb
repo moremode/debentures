@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   post '/auth', to: 'users#auth_post'
   post '/check-username', to: 'ajax#username_check'
   post '/reg', to: 'users#reg_post'
+  post '/save-data', to: 'users#save_data'
 
   root 'users#auth'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

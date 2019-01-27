@@ -1,52 +1,65 @@
 <div class="gen-main-container">
-  <div class="gen-inputs-container">
-    <h2>Паспорт Заёмщика</h2>
-    <input type="text" name="" id="input-first-1" class="gen-input" placeholder="Имя">
-    <input type="text" name="" id="input-last-1" class="gen-input" placeholder="Фамилия">
-    <input type="text" name="" id="input-middle-1" class="gen-input" placeholder="Отчество">
-    <input type="text" name="" id="input-serial-1" class="gen-input" placeholder="Серия паспорта">
-    <input type="text" name="" id="input-number-1" class="gen-input" placeholder="Номер паспорта">
-    <input type="text" name="" id="input-given-1" class="gen-input" placeholder="Дата выдачи">
-    <input type="text" name="" id="input-place-1" class="gen-input" placeholder="Место выдачи">
-  </div>
-  <div class="gen-inputs-container">
-    <h2>Параметры Займа</h2>
-    <h3 class="gen-href">Дата выдачи</h3>
-    <input type="date" name="" id="input-date-given" class="gen-input" placeholder="Дата выдачи" value="">
-    <h3 class="gen-href">Дата возварата</h3>
-    <input type="date" name="" id="input-date-return" class="gen-input" placeholder="Дата возврата" value="">
-    <input type="number" name="" id="input-sum" class="gen-input" placeholder="Сумма займа">
-    <input type="number" name="" id="input-percent" class="gen-input" placeholder="Годовой процент">
-    <input type="checkbox" name="" id="input-sanction" class="" value="Санкции при просрочке">
-    <input type="number" name="" id="input-sanction-percent" class="gen-input" placeholder="Процент при просрочке">
-    <input type="number" name="" id="input-sanction-payment" class="gen-input" placeholder="Выплата при просрочке">
-  </div>
-  <div class="gen-inputs-container">
-    <h2>Паспорт Кредитора</h2>
-    <input type="text" name="" id="input-first-2" class="gen-input" placeholder="Имя">
-    <input type="text" name="" id="input-last-2" class="gen-input" placeholder="Фамилия">
-    <input type="text" name="" id="input-middle-2" class="gen-input" placeholder="Отчество">
-    <input type="text" name="" id="input-serial-2" class="gen-input" placeholder="Серия паспорта">
-    <input type="text" name="" id="input-number-2" class="gen-input" placeholder="Номер паспорта">
-    <input type="text" name="" id="input-given-2" class="gen-input" placeholder="Дата выдачи">
-    <input type="text" name="" id="input-place-2" class="gen-input" placeholder="Место выдачи">
-  </div>
-  <div class="blank-container">
-    <p>РАСПИСКА</p>
-    <p>в получении суммы займа</p>
-    <p><span id="span-date-start"></span></p>
-    <p>Я, <span id="span-last-1"></span> <span id="span-first-1"></span> <span id="span-middle-1"></span>, паспорт: серия <span id="span-serial-1"></span> N <span id="span-num-1"></span>,</p>
-    <p>выдан <span id="span-given-1"></span> <span id="span-address-1"></span></p>
-    <p>получил от займодавца - <span id="span-last-2"></span> <span id="span-first-2"></span> <span id="span-middle-2"></span>, паспорт: серия <span id="span-serial-2"></span> N <span id="span-num-2"></span></p>
-    <p>выдан <span id="span-given-2"></span> <span id="span-address-2"></span></p>
-    <p>денежную сумму в размере <span id="span-count"></span> рублей</p>
-    <p>Указанную заёмную денежную сумму и проценты за пользование ими в размере <span id="span-percent"></span> годовых, я обязуюсь возвратить в срок до <span id="span-date-end"></span> года по месту жителя займодавца наличными денежными средствами</p>
-    <p>За просрочку возвратасуммы в вышеуказанный срок обязуюсь уплатить неустойку в размере <span id="span-san-payment"></span> рублей, а так же <span id="span-san-percent"></span>% от суммы займа за каждый день просрочки</p>
-    дата подпись
-  </div>
+  <form style="" action="/save-data" method="post">
+    <div class="gen-inputs-container">
+      <h2>Паспорт Заёмщика</h2>
+      <input type="text" name="first1" id="input-first-1" class="gen-input" placeholder="Имя">
+      <input type="text" name="last1" id="input-last-1" class="gen-input" placeholder="Фамилия">
+      <input type="text" name="middle1" id="input-middle-1" class="gen-input" placeholder="Отчество">
+      <input type="text" name="serial1" id="input-serial-1" class="gen-input" placeholder="Серия паспорта">
+      <input type="text" name="number1" id="input-number-1" class="gen-input" placeholder="Номер паспорта">
+      <h3 class="gen-href">Дата выдачи</h3>
+      <input type="date" name="given1" id="input-given-1" class="gen-input" placeholder="Дата возврата" value="">
+      <input type="text" name="place1" id="input-place-1" class="gen-input" placeholder="Место выдачи">
+      <input type="text" name="address1" id="input-residential-address-1" class="gen-input" placeholder="Место жительства">
+    </div>
+    <div class="gen-inputs-container">
+      <h2>Параметры Займа</h2>
+      <h3 class="gen-href">Дата выдачи</h3>
+      <input type="date" name="given" id="input-date-given" class="gen-input" placeholder="Дата выдачи" value="">
+      <h3 class="gen-href">Дата возварата</h3>
+      <input type="date" name="return" id="input-date-return" class="gen-input" placeholder="Дата возврата" value="">
+      <input type="number" name="loan_amount" id="input-sum" class="gen-input" placeholder="Сумма займа">
+      <input type="number" name="year_percent" id="input-percent" class="gen-input" placeholder="Годовой процент">
+      <h3 style="display: inline"  class="gen-href">Санкции при просрочке</h3><input type="checkbox" name="" id="input-sanction" class="">
+      <div id="sanction-container" style="display: none;">
+        <input style="margin-top: 9px;" type="number" name="delay_percent" id="input-sanction-percent" class="gen-input" placeholder="Процент при просрочке">
+        <input type="number" name="delay_payment" id="input-sanction-payment" class="gen-input" placeholder="Выплата при просрочке">
+      </div>
+      <div id="gen-submit-container">
+        <input id="gen-submit" type="submit" value="Save" class="auth-submit-button">
+      </div>
+    </div>
+    <div class="gen-inputs-container">
+      <h2>Паспорт Кредитора</h2>
+      <input type="text" name="first2" id="input-first-2" class="gen-input" placeholder="Имя">
+      <input type="text" name="last2" id="input-last-2" class="gen-input" placeholder="Фамилия">
+      <input type="text" name="middle2" id="input-middle-2" class="gen-input" placeholder="Отчество">
+      <input type="text" name="serial2" id="input-serial-2" class="gen-input" placeholder="Серия паспорта">
+      <input type="text" name="number2" id="input-number-2" class="gen-input" placeholder="Номер паспорта">
+      <h3 class="gen-href">Дата выдачи</h3>
+      <input type="date" name="given2" id="input-given-2" class="gen-input" placeholder="Дата возврата" value="">
+      <input type="text" name="place2" id="input-place-2" class="gen-input" placeholder="Место выдачи">
+      <input type="text" name="address2" id="input-residential-address-2" class="gen-input" placeholder="Место жительства">
+    </div>
+    <div class="blank-container">
+      <p>РАСПИСКА</p>
+      <p>в получении суммы займа</p>
+      <p><span id="span-date-start"></span></p>
+      <p>Я, <span id="span-last-1"></span> <span id="span-first-1"></span> <span id="span-middle-1"></span>, паспорт: серия <span id="span-serial-1"></span> N <span id="span-num-1"></span>,</p>
+      <p>выдан <span id="span-given-1"></span> <span id="span-address-1"></span>, проживающий по адресу <span id="span-residential-address-1"></span></p>
+      <p>получил от займодавца - <span id="span-last-2"></span> <span id="span-first-2"></span> <span id="span-middle-2"></span>, паспорт: серия <span id="span-serial-2"></span> N <span id="span-num-2"></span></p>
+      <p>выдан <span id="span-given-2"></span> <span id="span-address-2"></span>, проживающий по адресу <span id="span-residential-address-2"></span></p>
+      <p>денежную сумму в размере <span id="span-count"></span> рублей</p>
+      <p>Указанную заёмную денежную сумму и проценты за пользование ими в размере <span id="span-percent"></span> годовых, я обязуюсь возвратить в срок до <span id="span-date-end"></span> года по месту жителя займодавца наличными денежными средствами</p>
+      <p>За просрочку возвратасуммы в вышеуказанный срок обязуюсь уплатить неустойку в размере <span id="span-san-payment"></span> рублей, а так же <span id="span-san-percent"></span>% от суммы займа за каждый день просрочки</p>
+      дата подпись
+    </div>
+  </form>
+
 </div>
 <script>
     $( ".gen-input" ).change(changed);
+    $('#input-sanction').change(changed1);
 
     function changed()
     {
@@ -57,6 +70,7 @@
         $('#span-num-1').text($('#input-number-1').val());
         $('#span-given-1').text($('#input-given-1').val());
         $('#span-address-1').text($('#input-place-1').val());
+        $('#span-residential-address-1').text($('#input-residential-address-1').val());
 
         $('#span-first-2').text($('#input-first-2').val());
         $('#span-last-2').text($('#input-last-2').val());
@@ -65,6 +79,7 @@
         $('#span-num-2').text($('#input-number-2').val());
         $('#span-given-2').text($('#input-given-2').val());
         $('#span-address-2').text($('#input-place-2').val());
+        $('#span-residential-address-2').text($('#input-residential-address-2').val());
 
         $('#span-count').text($('#input-sum').val());
         $('#span-date-end').text($('#input-date-return').val());
@@ -72,5 +87,18 @@
         $('#span-san-payment').text($('#input-sanction-payment').val());
         $('#span-san-percent').text($('#input-sanction-percent').val());
         //$('#span-address-1').text($('#input-place-2').val());
+    }
+
+    function changed1()
+    {
+        v = $('#input-sanction').prop('checked');
+        if (v == true)
+        {
+            $('#sanction-container').slideDown(300);
+        }
+        else
+        {
+            $('#sanction-container').slideUp(300);
+        }
     }
 </script>
