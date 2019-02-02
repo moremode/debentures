@@ -1,6 +1,6 @@
 <div class="gen-main-container">
   <form style="" action="/save-data" method="post">
-    <div class="gen-inputs-container">
+    <div class="gen-inputs-container" id="gen-input-container-1">
       <h2>Паспорт Заёмщика</h2>
       <input type="text" name="first1" id="input-first-1" class="gen-input" placeholder="Имя">
       <input type="text" name="last1" id="input-last-1" class="gen-input" placeholder="Фамилия">
@@ -11,8 +11,11 @@
       <input type="date" name="given1" id="input-given-1" class="gen-input" placeholder="Дата возврата" value="">
       <input type="text" name="place1" id="input-place-1" class="gen-input" placeholder="Место выдачи">
       <input type="text" name="address1" id="input-residential-address-1" class="gen-input" placeholder="Место жительства">
+      <div id="gen-submit-container">
+        <button type="button" class="auth-submit-button" onclick="swap1()">Далее</button>
+      </div>
     </div>
-    <div class="gen-inputs-container">
+    <div class="gen-inputs-container" id="gen-input-container-3" style="display: none;">
       <h2>Параметры Займа</h2>
       <h3 class="gen-href">Дата выдачи</h3>
       <input type="date" name="given" id="input-date-given" class="gen-input" placeholder="Дата выдачи" value="">
@@ -26,10 +29,10 @@
         <input type="number" name="delay_payment" id="input-sanction-payment" class="gen-input" placeholder="Выплата при просрочке">
       </div>
       <div id="gen-submit-container">
-        <input id="gen-submit" type="submit" value="Save" class="auth-submit-button">
+        <input id="gen-submit" type="submit" value="Отправить" class="auth-submit-button">
       </div>
     </div>
-    <div class="gen-inputs-container">
+    <div class="gen-inputs-container" id="gen-input-container-2" style="display: none;">
       <h2>Паспорт Кредитора</h2>
       <input type="text" name="first2" id="input-first-2" class="gen-input" placeholder="Имя">
       <input type="text" name="last2" id="input-last-2" class="gen-input" placeholder="Фамилия">
@@ -40,6 +43,9 @@
       <input type="date" name="given2" id="input-given-2" class="gen-input" placeholder="Дата возврата" value="">
       <input type="text" name="place2" id="input-place-2" class="gen-input" placeholder="Место выдачи">
       <input type="text" name="address2" id="input-residential-address-2" class="gen-input" placeholder="Место жительства">
+      <div id="gen-submit-container">
+        <button type="button" class="auth-submit-button" onclick="swap2()">Далее</button>
+      </div>
     </div>
     <div class="blank-container">
       <p>РАСПИСКА</p>
@@ -100,5 +106,28 @@
         {
             $('#sanction-container').slideUp(300);
         }
+    }
+
+    var time = 400;
+
+    function swap1() {
+        $('#gen-input-container-1').animate({"margin-right": "+=100px", "opacity": "0"}, time);
+        setTimeout(function () {
+            $('#gen-input-container-1').css('display', 'none');
+            $('#gen-input-container-2').css('display', 'inline-block');
+            $('#gen-input-container-2').css('opacity', '0');
+            $('#gen-input-container-2').css('margin-right', '-=100px');
+            $('#gen-input-container-2').animate({"margin-right": "+=100px", "opacity": "1"}, time);
+        }, time);
+    }
+    function swap2() {
+        $('#gen-input-container-2').animate({"margin-right": "+=100px", "opacity": "0"}, time);
+        setTimeout(function () {
+            $('#gen-input-container-2').css('display', 'none');
+            $('#gen-input-container-3').css('display', 'inline-block');
+            $('#gen-input-container-3').css('opacity', '0');
+            $('#gen-input-container-3').css('margin-right', '-=100px');
+            $('#gen-input-container-3').animate({"margin-right": "+=100px", "opacity": "1"}, time);
+        }, time);
     }
 </script>

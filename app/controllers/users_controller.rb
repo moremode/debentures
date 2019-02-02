@@ -113,7 +113,14 @@ class UsersController < ApplicationController
       puts('find');
     else
       puts('not_found');
-      Passport.create(first_name: first1, last_name: last1, middle_name: middle1, serial: serial1, number: number1, given: given1, address: place1, )
+      passport1 = Passport.create(first_name: first1, last_name: last1, middle_name: middle1, serial: serial1, number: number1, given: given1, address: place1, residential_address: address1);
+    end
+
+    if (Passport.all.each {|passport| passport.first_name == first2 && passport.last_name == last2 && passport.middle_name == middle2 && passport.serial == serial2 && passport.number == number2 } == nil)
+      puts('find');
+    else
+      puts('not_found');
+      passport2 = Passport.create(first_name: first2, last_name: last2, middle_name: middle2, serial: serial2, number: number2, given: given2, address: place2, residential_address: address2);
     end
   end
 end

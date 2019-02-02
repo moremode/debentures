@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_22_195610) do
+ActiveRecord::Schema.define(version: 2019_02_01_182550) do
 
   create_table "debentures", force: :cascade do |t|
     t.integer "passport1_id"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 2019_01_22_195610) do
     t.boolean "gender"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "residential_address"
   end
 
   create_table "users", force: :cascade do |t|
@@ -46,7 +47,6 @@ ActiveRecord::Schema.define(version: 2019_01_22_195610) do
     t.integer "passport_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "residential_address"
     t.index ["passport_id"], name: "index_users_on_passport_id"
   end
 
