@@ -109,24 +109,24 @@ class UsersController < ApplicationController
     delay_payment = params[:delay_payment]
     delay_percent = params[:delay_percent]
 
-    passport1 = Passport.all.each {|passport| passport.first_name == first1 && passport.last_name == last1 && passport.middle_name == middle1 && passport.serial == serial1 && passport.number == number1 }
-    passport2 = Passport.all.each {|passport| passport.first_name == first2 && passport.last_name == last2 && passport.middle_name == middle2 && passport.serial == serial2 && passport.number == number2 }
+    passport1 = Passport.find_by(first_name: first1, last_name: last1, middle_name: middle1, serial: serial1, number: number1);
+    passport2 = Passport.find_by(first_name: first2, last_name: last2, middle_name: middle2, serial: serial2, number: number2);
 
-    if (passport1 == nil)
-      puts('find');
+    if (passport1 != nil)
+      puts('find')
     else
-      puts('not_found');
-      passport1 = Passport.create(first_name: first1, last_name: last1, middle_name: middle1, serial: serial1, number: number1, given: given1, address: place1, residential_address: address1).errors;
+      puts('not_found')
+      passport1 = Passport.create(first_name: first1, last_name: last1, middle_name: middle1, serial: serial1, number: number1, given: given1, address: place1, residential_address: address1)
     end
 
-    if (passport2 == nil)
-      puts('find');
+    if (passport2 != nil)
+      puts('find')
     else
-      puts('not_found');
-      passport2 = Passport.create(first_name: first2, last_name: last2, middle_name: middle2, serial: serial2, number: number2, given: given2, address: place2, residential_address: address2);
+      puts('not_found')
+      passport2 = Passport.create(first_name: first2, last_name: last2, middle_name: middle2, serial: serial2, number: number2, given: given2, address: place2, residential_address: address2)
     end
 
-    error = Debenture.create(date: given, last_date: ret, count: loan_amount, percent: year_percent, sanctions_payment: delay_payment, sanctions_percent: delay_percent, passport1_id: passport1.id, passport2_id: passport2.id).errors;
-    flash[:error] = error
+    deb = Debenture.create(date: given, last_date: ret, count: loan_amount, percent: year_percent, sanctions_payment: delay_payment, sanctions_percent: delay_percent, passport1: passport1, passport2: passport2)
+    flash[:error] = deb.errors
   end
 end

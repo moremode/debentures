@@ -31,6 +31,7 @@
       </div>
       <div id="gen-submit-container">
         <input id="gen-submit" type="submit" value="Отправить" class="auth-submit-button">
+        <input id="gen-generate" type="button" value="Генерировать таблицу" class="auth-submit-button">
       </div>
     </div>
     <div class="gen-inputs-container" id="gen-input-container-2" style="display: none;">
@@ -48,6 +49,11 @@
         <button type="button" class="auth-submit-button" onclick="swap2()">Далее</button>
       </div>
     </div>
+    <div>
+    <table id="payment-table">
+
+    </table>
+    </div>
     <div class="blank-container">
       <p>РАСПИСКА</p>
       <p>в получении суммы займа</p>
@@ -62,11 +68,32 @@
       дата подпись
     </div>
   </form>
-
 </div>
 <script>
     $( ".gen-input" ).change(changed);
     $('#input-sanction').change(changed1);
+
+    $('#gen-generate').click(
+        function() {
+            var sum = parseInt($('#input-sum').val());
+            if (sum > 1000000000)
+                sum = 1000000000;
+            var percent = parseInt($('#input-percent').val());
+            if (percent > 200)
+                percent = 200;
+            var start = Date.parse($('#input-date-given').val());
+            var end = Date.parse($('#input-date-return').val());
+            var date = end - start;
+            var full = percent * (date / 1000 / 60 / 60 / 24 / 365);
+
+            var d = Math.round(date / 1000 / 60 / 60 / 24 / 30);
+            if (d == 0)
+                d = 1;
+            var count = d;
+
+            generate(sum, full, count, start, date);
+        }
+    );
 
     function changed()
     {
@@ -130,5 +157,68 @@
             $('#gen-input-container-3').css('margin-right', '-=100px');
             $('#gen-input-container-3').animate({"margin-right": "+=100px", "opacity": "1"}, time);
         }, time);
+    }
+
+    function generate(sum, percent, count, start, ms)
+    {
+
+        var sum1 = 0;
+        percent = 1 + percent / 100 / count;
+        for (var i = 0; i < count; i ++)
+        {
+            sum1 = sum1 + Math.pow(percent, i);
+        }
+        var value = sum * Math.pow(percent, count) / sum1;
+        var table = $('#payment-table');
+        table.empty();
+        var tr = $('<tr/>').appendTo(table);
+        $('<td/>', {class: 'main-row', text: 'Время выплат'}).appendTo(tr);
+        $('<td/>', {class: 'main-row', text: 'На начало периода'}).appendTo(tr);
+        $('<td/>', {class: 'main-row', text: 'Проценты'}).appendTo(tr);
+        $('<td/>', {class: 'main-row', text: 'Сумма выплаты'}).appendTo(tr);
+        $('<td/>', {class: 'main-row', text: 'На конец периода'}).appendTo(tr);
+        while (sum >= 1)
+        {
+            var tr = $('<tr/>').appendTo(table);
+            var date = new Date(start + ms / count);
+            $('<td/>', {text: date.getDate() + ' ' + month(date.getMonth()) + ' ' + date.getFullYear()}).appendTo(tr);
+            $('<td/>', {text: sum.toFixed(2)}).appendTo(tr);
+            $('<td/>', {text: (sum * (percent - 1)).toFixed(2)}).appendTo(tr);
+            $('<td/>', {text: value.toFixed(2)}).appendTo(tr);
+            $('<td/>', {text: (sum * percent - value).toFixed(2)}).appendTo(tr);
+            sum = sum * percent - value;
+            start = start + ms / count;
+        }
+    }
+
+    function month(month)
+    {
+        switch (month) {
+            case 0:
+                return 'Января';
+            case 1:
+                return 'Февраля';
+            case 2:
+                return 'Марта';
+            case 3:
+                return 'Апреля';
+            case 4:
+                return 'Мая';
+            case 5:
+                return 'Июня';
+            case 6:
+                return 'Июля';
+            case 7:
+                return 'Августа';
+            case 8:
+                return 'Сентября';
+            case 9:
+                return 'Октября';
+            case 10:
+                return 'Ноября';
+            case 11:
+                return 'Декабря';
+
+        }
     }
 </script>
