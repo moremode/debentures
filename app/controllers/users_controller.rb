@@ -126,7 +126,24 @@ class UsersController < ApplicationController
       passport2 = Passport.create(first_name: first2, last_name: last2, middle_name: middle2, serial: serial2, number: number2, given: given2, address: place2, residential_address: address2)
     end
 
-    deb = Debenture.create(date: given, last_date: ret, count: loan_amount, percent: year_percent, sanctions_payment: delay_payment, sanctions_percent: delay_percent, passport1: passport1, passport2: passport2)
+    parameter = Parameter.create(date_start: given, date_end: ret, loan_amount: loan_amount, year_percent: year_percent, delay_payment: delay_payment, delay_percent: delay_percent)
+
+    deb = Debenture.create(passport1: passport1, passport2: passport2, parameter: parameter)
     flash[:error] = deb.errors
+  end
+
+  def save_table
+    given = params[:given]
+    ret = params[:return]
+    loan_amount = params[:loan_amount]
+    year_percent = params[:year_percent]
+    delay_payment = params[:delay_payment]
+    delay_percent = params[:delay_percent]
+
+    parameter = Parameter.create(date_start: given, date_end: ret, loan_amount: loan_amount, year_percent: year_percent, delay_payment: delay_payment, delay_percent: delay_percent)
+
+    id = parameter.id #Parameter.find_by(date_start: given, date_end: ret, loan_amount: loan_amount, year_percent: year_percent, delay_payment: delay_payment, delay_percent: delay_percent).id
+
+    redirect_to '/table?id=' + id.to_s
   end
 end

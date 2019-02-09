@@ -10,21 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_01_182550) do
+ActiveRecord::Schema.define(version: 2019_02_09_082424) do
 
   create_table "debentures", force: :cascade do |t|
     t.integer "passport1_id"
     t.integer "passport2_id"
-    t.datetime "date"
-    t.integer "count"
-    t.datetime "last_date"
-    t.integer "percent"
-    t.integer "sanctions_percent"
-    t.integer "sanctions_payment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "parameter_id"
+    t.index ["parameter_id"], name: "index_debentures_on_parameter_id"
     t.index ["passport1_id"], name: "index_debentures_on_passport1_id"
     t.index ["passport2_id"], name: "index_debentures_on_passport2_id"
+  end
+
+  create_table "parameters", force: :cascade do |t|
+    t.integer "loan_amount"
+    t.integer "year_percent"
+    t.datetime "date_start"
+    t.datetime "date_end"
+    t.integer "delay_payment"
+    t.integer "delay_percent"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "passports", force: :cascade do |t|

@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  loan_amount: 
+  year_percent: 
+  date_start: 
+  date_end: 
+  delay_payment: 
+  delay_percent: 
+
+two:
+  loan_amount: 
+  year_percent: 
+  date_start: 
+  date_end: 
+  delay_payment: 
+  delay_percent: 

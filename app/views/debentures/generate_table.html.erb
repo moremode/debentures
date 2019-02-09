@@ -1,0 +1,151 @@
+<div class="gen-main-container">
+  <% if @id == 0 %>
+    <form action="/save-table" method="post" style="">
+      <div class="gen-inputs-container" id="gen-input-container-3">
+        <h2>Параметры Займа</h2>
+        <h3 class="gen-href">Дата выдачи</h3>
+        <input type="date" name="given" id="input-date-given" class="gen-input" placeholder="Дата выдачи" value="">
+        <h3 class="gen-href">Дата возварата</h3>
+        <input type="date" name="return" id="input-date-return" class="gen-input" placeholder="Дата возврата" value="">
+        <input type="number" name="loan_amount" id="input-sum" class="gen-input" placeholder="Сумма займа">
+        <input type="number" name="year_percent" id="input-percent" class="gen-input" placeholder="Годовой процент">
+        <h3 style="display: inline"  class="gen-href">Санкции при просрочке</h3><input type="checkbox" name="" id="input-sanction" class="">
+        <div id="sanction-container" style="display: none;">
+          <input style="margin-top: 9px;" type="number" name="delay_percent" id="input-sanction-percent" class="gen-input" placeholder="Процент при просрочке">
+          <input type="number" name="delay_payment" id="input-sanction-payment" class="gen-input" placeholder="Выплата при просрочке">
+        </div>
+        <div id="gen-submit-container">
+          <input id="gen-submit" type="submit" value="Сохранить" class="auth-submit-button">
+          <input id="gen-generate" type="button" value="Генерировать таблицу" class="auth-submit-button">
+        </div>
+      </div>
+  <% end %>
+  <% if @id != 0 %>
+    <p id="href-for-friends">Ваша ссылка на таблицу: <b><%= request.original_url %></b></p>
+  <% end %>
+
+  <div>
+    <table id="payment-table">
+
+    </table>
+  </div>
+  </form>
+</div>
+<script>
+    $('#input-sanction').change(changed1);
+
+    $('#gen-generate').click(
+        function() {
+            var sum = parseInt($('#input-sum').val());
+            if (sum > 1000000000)
+                sum = 1000000000;
+            var percent = parseInt($('#input-percent').val());
+            if (percent > 200)
+                percent = 200;
+            var start = Date.parse($('#input-date-given').val());
+            var end = Date.parse($('#input-date-return').val());
+            var date = end - start;
+            var full = percent * (date / 1000 / 60 / 60 / 24 / 365);
+
+            var d = Math.round(date / 1000 / 60 / 60 / 24 / 30);
+            if (d === 0)
+                d = 1;
+            generate(sum, full, d, start, date);
+        }
+    );
+
+    function changed1()
+    {
+        v = $('#input-sanction').prop('checked');
+        if (v == true)
+        {
+            $('#sanction-container').slideDown(300);
+        }
+        else
+        {
+            $('#sanction-container').slideUp(300);
+        }
+    }
+
+    function generate(sum, percent, count, start, ms)
+    {
+
+        var sum1 = 0;
+        percent = 1 + percent / 100 / count;
+        for (var i = 0; i < count; i ++)
+        {
+            sum1 = sum1 + Math.pow(percent, i);
+        }
+        var value = sum * Math.pow(percent, count) / sum1;
+        var table = $('#payment-table');
+        table.empty();
+        var tr = $('<tr/>').appendTo(table);
+        $('<td/>', {class: 'main-row', text: 'Время выплат'}).appendTo(tr);
+        $('<td/>', {class: 'main-row', text: 'На начало периода'}).appendTo(tr);
+        $('<td/>', {class: 'main-row', text: 'Проценты'}).appendTo(tr);
+        $('<td/>', {class: 'main-row', text: 'Сумма выплаты'}).appendTo(tr);
+        $('<td/>', {class: 'main-row', text: 'На конец периода'}).appendTo(tr);
+        while (sum >= 1)
+        {
+            var tr = $('<tr/>').appendTo(table);
+            var date = new Date(start + ms / count);
+            $('<td/>', {text: date.getDate() + ' ' + month(date.getMonth()) + ' ' + date.getFullYear()}).appendTo(tr);
+            $('<td/>', {text: sum.toFixed(2)}).appendTo(tr);
+            $('<td/>', {text: (sum * (percent - 1)).toFixed(2)}).appendTo(tr);
+            $('<td/>', {text: value.toFixed(2)}).appendTo(tr);
+            $('<td/>', {text: (sum * percent - value).toFixed(2)}).appendTo(tr);
+            sum = sum * percent - value;
+            start = start + ms / count;
+        }
+    }
+
+    function month(month)
+    {
+        switch (month) {
+            case 0:
+                return 'Января';
+            case 1:
+                return 'Февраля';
+            case 2:
+                return 'Марта';
+            case 3:
+                return 'Апреля';
+            case 4:
+                return 'Мая';
+            case 5:
+                return 'Июня';
+            case 6:
+                return 'Июля';
+            case 7:
+                return 'Августа';
+            case 8:
+                return 'Сентября';
+            case 9:
+                return 'Октября';
+            case 10:
+                return 'Ноября';
+            case 11:
+                return 'Декабря';
+
+        }
+    }
+</script>
+<% if @id != 0 %>
+  <script>
+      var sum = <%= @loan %>;
+      if (sum > 1000000000)
+          sum = 1000000000;
+      var percent = <%= @percent %>;
+      if (percent > 200)
+          percent = 200;
+      var start = Date.parse('<%= @start.to_s %>');
+      var end = Date.parse('<%= @end.to_s %>');
+      var date = end - start;
+      var full = percent * (date / 1000 / 60 / 60 / 24 / 365);
+
+      var d = Math.round(date / 1000 / 60 / 60 / 24 / 30);
+      if (d === 0)
+          d = 1;
+      generate(sum, full, d, start, date);
+  </script>
+<% end %>
