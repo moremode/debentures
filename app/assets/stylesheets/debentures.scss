@@ -11,7 +11,7 @@
 
 @font-face {
   font-family: 'Helvetica Neue';
-  src: url("fonts/HelveticaNeueCyr-UltraLightItalic.otf");
+  src: font-path("fonts/HelveticaNeueCyr-UltraLightItalic.otf");
   font-weight: 200;
   font-style: italic;
 }
@@ -46,7 +46,7 @@
 
 @font-face {
   font-family: 'Helvetica Neue';
-  src: url("fonts/HelveticaNeueCyr-MediumItaicl.otf");
+  src: font-path("fonts/HelveticaNeueCyr-MediumItaicl.otf");
   font-weight: 600;
   font-style: italic;
 }
