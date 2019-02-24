@@ -251,3 +251,33 @@
 }
 
 /// GENERATE END
+
+.debenture-container
+{
+  transition: 0.3s;
+  display: inline-block;
+
+  text-align: center;
+
+  width: 150px;
+  height: 200px;
+  border-radius: 15px;
+  border: 2px solid #169f00;
+  margin: 20px;
+}
+
+.debenture-container:hover
+{
+  transition: 0.3s;
+  border: 2px solid #009f77;
+  background-color: #38bc5b;
+  color: white;
+}
+
+.debenture-passport
+{
+  margin-top: 53px;
+  font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+}
+
+///

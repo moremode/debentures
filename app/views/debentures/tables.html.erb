@@ -1,0 +1,8 @@
+<% @tables.each do |table| %>
+  <a href="/debenture?id=<%= table.id %>" class="container-href">
+    <div class="debenture-container">
+      <p class="debenture-passport"><%= table.passport1.last_name + " " + table.passport1.first_name[0] + "." + table.passport1.middle_name[0] + "." %></p>
+      <p class="debenture-passport"><%= table.passport2.last_name + " " + table.passport2.first_name[0] + "." + table.passport2.middle_name[0] + "."  %></p>
+    </div>
+  </a>
+<% end %>

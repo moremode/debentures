@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   get '/reg', to: 'users#reg'
   get '/logout', to: 'users#logout'
   get '/table', to: 'debentures#generate_table'
+  get '/tables', to: 'debentures#tables'
+  get '/debenture', to: 'debentures#debenture'
 
 
   post '/auth', to: 'users#auth_post'
